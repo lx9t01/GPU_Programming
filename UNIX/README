@@ -1,0 +1,30 @@
+#README
+
+====================== Question 1 ===================================
+1.1
+---------------------
+Creates an integer pointer, sets the value to which it points to 3, adds 2 to this value, and prints said value.
+
+void test1() {
+    int a = 3;
+    int *pa = &a;
+    *pa = *pa + 2;
+    printf("%d\n", *pa);
+}
+
+1.2
+---------------------
+Creates two integer pointers and sets the values to which they point to 2 and 3, respectively.
+
+void test2() {
+    int *a, b;
+    a = (int *) malloc(sizeof (int));
+    b = (int *) malloc(sizeof (int));
+
+    if (!(a && b)) {
+        printf("Out of memory\n");
+        exit(-1);
+    }
+    *a = 2;
+    *b = 3;
+}
