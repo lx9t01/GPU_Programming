@@ -97,5 +97,24 @@ work to parallel computation, whereas y_2[n] the value of y depends on the previ
 calculation. 
 
 2.2
+We have
+	y[n] = c * x[n] + (1 - c) * y[n - 1]
+	y[n-1] = c * x[n-1] + (1-c) * y[n-2]
+	y[n-2] = c * x[n-2] + (1-c) * y[n-3]
+	...
+	y[1] = c * x[1] + (1-c) * y[0]
+	y[0] = some initial value
+and we can expand the calculation of y[n] as
+	y[n] = c * x[n] + (1-c) * (c * x[n-1] + (1-c) * y[n-2])
+because c -> 1, so we can ignore the (1-c)*(1-c) term and the calculation would be
+	y[n] = c * x[n] + (1-c) * c * x[n-1]
+	y[n-1] = c * x[n-1] + (1-c) * c * x[n-2]
+	...
+	y[2] = c * x[2] + (1-c) * c * x[1]
+	y[1] = c * x[1] + (1-c) * y[0]
+	y[0] = some initial value
+now the equation is perfectly parallizable to calculate by GPU as the value of y is independent of each other, 
+and depends only on x. 
 
+====================== Question 3 ===================================
 
