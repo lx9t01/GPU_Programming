@@ -13,7 +13,7 @@
 
 __global__
 void cudaBlurKernel(const float *raw_data, const float *blur_v, float *out_data,
-    int n_frames, int blur_v_size) {
+    unsigned int n_frames, unsigned int blur_v_size) {
 
     // TODO: Fill in the implementation for the GPU-accelerated convolution. 
     //
@@ -23,16 +23,16 @@ void cudaBlurKernel(const float *raw_data, const float *blur_v, float *out_data,
     unsigned int thread_index = blockIdx.x * blockDim.x + threadIdx.x;
     
     while (thread_index < n_frames) {
-        if (thread_index < (unsigned int)blur_v_size) {
-            for (int i = 0; i <= thread_index; i += blockDim.x * gridDim.x) {
+        if (thread_index < blur_v_size) {
+            for (unsigned int i = 0; i <= thread_index; i += blockDim.x * gridDim.x) {
                 out_data[thread_index] += raw_data[thread_index - i] * blur_v[i];
             }
         } else {
-            for (int i = 0; i < (unsigned int)blur_v_size; i += blockDim.x * gridDim.x) {
+            for (unsigned int i = 0; i < blur_v_size; i += blockDim.x * gridDim.x) {
                 out_data[thread_index] += raw_data[thread_index - i] * blur_v[i];
             }
         }
-        //thread_index += blockDim.x * gridDim.x;
+        thread_index += blockDim.x * gridDim.x;
         printf("t: %d\n", &thread_index);
         //printf("b: %d\n", &blockIdx.x);
         //printf("g: %d\n", &gridDim.x);
