@@ -20,7 +20,7 @@ void cudaBlurKernel(const float *raw_data, const float *blur_v, float *out_data,
     // It may be helpful to use the information in the lecture slides, as well
     // as the CPU implementation, as a reference.
     
-    uint thread_index = blockIdx.x + blockDim.x * threadIdx.x;
+    uint thread_index = blockIdx.x * blockDim.x + threadIdx.x;
     
     while (thread_index < n_frames) {
         if (thread_index < blur_v_size) {
