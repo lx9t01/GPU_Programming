@@ -33,6 +33,7 @@ void cudaBlurKernel(const float *raw_data, const float *blur_v, float *out_data,
             }
         }
         thread_index += blockDim.x * gridDim.x;
+        printf("%d\n", &thread_index);
     }
 }
 
