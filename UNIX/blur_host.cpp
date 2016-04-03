@@ -189,6 +189,7 @@ int large_gauss_test(int argc, char **argv) {
     // Allocate memory on the GPU here to store the output  audio signal.
     float *dev_out_data;
     cudaMalloc((void**) &dev_out_data, n_frames * sizeof(float));
+    cudaMemset(dev_out_data, 0, n_frames * sizeof(float));
 
 
     // Iterate through each audio channel (e.g. 2 iterations for  stereo files)
