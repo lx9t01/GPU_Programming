@@ -28,12 +28,12 @@ void cudaBlurKernel(const float *raw_data, const float *blur_v, float *out_data,
                 out_data[thread_index] += raw_data[thread_index - i] * blur_v[i];
             }
         } else {
-            for (unsigned int i = 0; i < blur_v_size; ++i) {
-                out_data[thread_index] += raw_data[thread_index - i] * blur_v[i];
+            for (unsigned int j = 0; j < blur_v_size; ++j) {
+                out_data[thread_index] += raw_data[thread_index - j] * blur_v[j];
             }
         }
         thread_index += blockDim.x * gridDim.x;
-        printf("t: %d\n", &thread_index);
+        //printf("t: %d\n", &thread_index);
         //printf("b: %d\n", &blockIdx.x);
         //printf("g: %d\n", &gridDim.x);
     }
