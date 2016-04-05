@@ -138,7 +138,8 @@ int large_gauss_test(int argc, char **argv) {
     float *all_channel_output =
         new float[in_file_info.frames * in_file_info.channels];
 
-    int n_channels = in_file_info.channels;
+    //int n_channels = in_file_info.channels;
+    int n_channels = 1;
     int n_frames = in_file_info.frames;
     // n_frames = 1000000;
 
