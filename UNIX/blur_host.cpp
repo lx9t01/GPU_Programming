@@ -19,7 +19,7 @@ using std::endl;
 
 const float PI = 3.14159265358979;
 
-#define AUDIO_ON 1
+#define AUDIO_ON 0
 
 #if AUDIO_ON
     #include <sndfile.h>
@@ -140,7 +140,7 @@ int large_gauss_test(int argc, char **argv) {
 
     int n_channels = in_file_info.channels;
     int n_frames = in_file_info.frames;
-    n_frames = 1000000;
+    // n_frames = 1000000;
 
 #else
     // If we're using random data instead of audio data, we can control the size
@@ -150,7 +150,7 @@ int large_gauss_test(int argc, char **argv) {
     // Can set as the number of trials
     int n_channels = 1;
     // Can set how many data points arbitrarily
-    int n_frames = 1000000;
+    int n_frames = 10000000;
 #endif
 
 
