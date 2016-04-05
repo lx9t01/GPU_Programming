@@ -140,7 +140,7 @@ int large_gauss_test(int argc, char **argv) {
 
     int n_channels = in_file_info.channels;
     int n_frames = in_file_info.frames;
-
+    n_frames = 1000000;
 
 #else
     // If we're using random data instead of audio data, we can control the size
@@ -167,6 +167,9 @@ int large_gauss_test(int argc, char **argv) {
     // channel's data on the GPU here
     //
     // Allocate memory on the GPU here. Note that the audio data comes in
+    
+    
+    
     // as floating-point values, the number of which is stored in N.
     float *dev_input_data;
     cudaMalloc((void**) &dev_input_data, n_frames * sizeof(float));
