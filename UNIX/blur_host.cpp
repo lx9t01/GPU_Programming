@@ -19,7 +19,7 @@ using std::endl;
 
 const float PI = 3.14159265358979;
 
-#define AUDIO_ON 0
+#define AUDIO_ON 1
 
 #if AUDIO_ON
     #include <sndfile.h>
@@ -273,7 +273,7 @@ int large_gauss_test(int argc, char **argv) {
         // back from the GPU to host memory. (We store this channel's result
         // in output_data on the host.)
         cudaMemcpy(output_data, dev_out_data, n_frames * sizeof(float), cudaMemcpyDeviceToHost);
-        
+        cudaMemset(dev_out_data, 0, n_frames * sizeof(float));
 
         // Stop timer
         cudaEventRecord(stop_gpu);
